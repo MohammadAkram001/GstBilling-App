@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
+import lombok.Setter;
 
 @Entity
 @Data
@@ -27,6 +28,7 @@ public class Invoice {
 	
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
+//	@Setter
 	private Customer customer;
 	
 	@OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL)

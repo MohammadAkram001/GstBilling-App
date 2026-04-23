@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Invoices</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #ecf0f1;
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #1abc9c;
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #16a085;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>All Invoices</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Status</th>
+        </tr>
+
+        <tr th:each="inv : ${invoices}">
+            <td th:text="${inv.id}"></td>
+            <td th:text="${inv.customer.name}"></td>
+            <td th:text="${inv.date}"></td>
+            <td th:text="${inv.totalAmount}"></td>
+            <td th:text="${inv.status}"></td>
+        </tr>
+    </table>
+
+    <a href="/">Home</a>
+</div>
+
+</body>
+</html>

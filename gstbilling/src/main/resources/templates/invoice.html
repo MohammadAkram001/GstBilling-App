@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Invoice</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 60px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #34495e;
+        }
+
+        select, input[type="number"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus, input[type="number"]:focus {
+            border-color: #1abc9c;
+            outline: none;
+        }
+
+        button {
+            background-color: #1abc9c;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #16a085;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Create Invoice</h2>
+
+    <form th:action="@{/invoice/create}" method="post">
+
+        <label for="customer">Select Customer:</label>
+        <select name="customerId" id="customer">
+            <option th:each="c : ${customers}"
+                    th:value="${c.id}"
+                    th:text="${c.name}">
+            </option>
+        </select>
+
+        <label for="product">Select Product:</label>
+        <select name="productIds" id="product">
+            <option th:each="p : ${products}"
+                    th:value="${p.id}"
+                    th:text="${p.name}">
+            </option>
+        </select>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantities" id="quantity" value="1">
+
+        <button type="submit">Generate Invoice</button>
+    </form>
+</div>
+
+</body>
+</html>
