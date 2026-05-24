@@ -45,10 +45,27 @@
 </head>
 <body>
 
-<div class="container">
-    <h1>Welcome to Invoice GST System</h1>
-    <a href="/login">Login</a>
-</div>
+<h2>Login</h2>
+
+<form th:action="@{/login}" method="post">
+
+    Username:
+    <input type="text" name="username"><br><br>
+
+    Password:
+    <input type="password" name="password"><br><br>
+
+    <button type="submit">Login</button>
+
+</form>
+
+<p th:if="${param.error}">
+Invalid username or password
+</p>
+
+<p th:if="${param.logout}">
+Logged out successfully
+</p>
 
 </body>
 </html>

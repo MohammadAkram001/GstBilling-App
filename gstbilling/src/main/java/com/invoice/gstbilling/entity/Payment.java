@@ -1,5 +1,7 @@
 package com.invoice.gstbilling.entity;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +20,9 @@ public class Payment {
 	
 	private double amount;
 	private String status;
+	
+	private String paymentMethod;
+	private LocalDate paymentDate;
 	
 	@OneToOne
 	@JoinColumn(name = "invoice_id")

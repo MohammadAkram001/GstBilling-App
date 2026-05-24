@@ -65,32 +65,98 @@
         a:hover {
             background-color: #16a085;
         }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        select {
+            padding: 6px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
     </style>
 </head>
 <body>
 
 <div class="container">
+
     <h2>All Invoices</h2>
 
     <table>
+
         <tr>
             <th>ID</th>
             <th>Customer</th>
             <th>Date</th>
             <th>Total</th>
-            <th>Status</th>
+            <th>Invoice Status</th>
+            <th>Payment Status</th>
+            <th>Payment Action</th>
+            <th>PDF</th>
         </tr>
 
         <tr th:each="inv : ${invoices}">
+
             <td th:text="${inv.id}"></td>
+
             <td th:text="${inv.customer.name}"></td>
+
             <td th:text="${inv.date}"></td>
+
             <td th:text="${inv.totalAmount}"></td>
+
             <td th:text="${inv.status}"></td>
+
+            <td th:text="${inv.payment.status}"></td>
+
+            <td>
+
+                <form th:action="@{/payment/pay/{id}(id=${inv.id})}" method="post">
+
+                    <select name="method">
+
+                        <option value="CASH">Cash</option>
+
+                        <option value="UPI">UPI</option>
+
+                        <option value="CARD">Card</option>
+
+                    </select>
+
+                    <button type="submit">
+                        Mark Paid
+                    </button>
+
+                </form>
+
+            </td>
+
+            <td>
+
+                <a th:href="@{/invoice/pdf/{id}(id=${inv.id})}">
+                    Download PDF
+                </a>
+
+            </td>
+
         </tr>
+
     </table>
 
     <a href="/">Home</a>
+
 </div>
 
 </body>

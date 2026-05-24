@@ -35,6 +35,9 @@ public class InvoiceService {
 	@Autowired
 	private PaymentRepository paymentRepository;
 	
+	@Autowired
+	private EmailService emailService;
+	
 	
 	public Invoice createInvoice(Long customerId, List<Long>productIds, List<Integer>quantities) {
 		
@@ -83,6 +86,8 @@ public class InvoiceService {
 		payment.setStatus("PENDING");
 		
 		paymentRepository.save(payment);
+		
+		emailService.sendInvoiceemail(customer.getEmail(), invoice);
 		
 		return invoice;
 		

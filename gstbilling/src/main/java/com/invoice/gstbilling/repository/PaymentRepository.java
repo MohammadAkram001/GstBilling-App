@@ -6,4 +6,5 @@ import com.invoice.gstbilling.entity.Payment;
 
 public interface PaymentRepository extends JpaRepository<Payment, Long>{
 
+	Payment findByInvoiceId(Long invoiceId);
 }
